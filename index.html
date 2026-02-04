@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Password Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="split-layout">
+        <!-- Left Panel: Controls -->
+        <aside class="left-panel">
+            <header>
+                <h1>PassGen</h1>
+                <p>Advanced Security Tool</p>
+            </header>
+
+            <div class="control-group theme-selector">
+                <label for="theme-select">Theme</label>
+                <div class="theme-options">
+                    <button class="theme-btn" data-theme="pastel-blue" title="Pastel Blue"></button>
+                    <button class="theme-btn" data-theme="pastel-pink" title="Pastel Pink"></button>
+                    <button class="theme-btn" data-theme="pastel-green" title="Pastel Green"></button>
+                    <button class="theme-btn" data-theme="pastel-purple" title="Pastel Purple"></button>
+                    <button class="theme-btn" data-theme="pastel-yellow" title="Pastel Yellow"></button>
+                    <button class="theme-btn" data-theme="pastel-peach" title="Pastel Peach"></button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="length-slider">Length: <span id="length-val">16</span></label>
+                <div class="length-input-container">
+                    <input type="range" id="length-slider" min="4" max="64" value="16">
+                    <input type="number" id="length-number" min="4" max="64" value="16">
+                </div>
+            </div>
+
+            <div class="control-group options-grid">
+                <div class="toggle-control">
+                    <label class="switch">
+                        <input type="checkbox" id="include-uppercase" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Uppercase (A-Z)</span>
+                </div>
+                <div class="toggle-control">
+                    <label class="switch">
+                        <input type="checkbox" id="include-lowercase" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Lowercase (a-z)</span>
+                </div>
+                <div class="toggle-control">
+                    <label class="switch">
+                        <input type="checkbox" id="include-numbers" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Numbers (0-9)</span>
+                </div>
+                <div class="toggle-control">
+                    <label class="switch">
+                        <input type="checkbox" id="include-symbols" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Symbols (!@#)</span>
+                </div>
+                <div class="toggle-control">
+                    <label class="switch">
+                        <input type="checkbox" id="exclude-ambiguous">
+                        <span class="slider round"></span>
+                    </label>
+                    <span>No Ambiguous (O,0,l,1)</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Mode</label>
+                <div class="mode-selector">
+                    <input type="radio" name="mode" id="mode-all" value="all" checked>
+                    <label for="mode-all" class="radio-label">All Characters</label>
+
+                    <input type="radio" name="mode" id="mode-easy" value="easy">
+                    <label for="mode-easy" class="radio-label">Easy to Say</label>
+                </div>
+            </div>
+
+            <button id="generate-btn" class="primary-btn">Generate Password</button>
+        </aside>
+
+        <!-- Right Panel: Results & History -->
+        <main class="right-panel">
+            <div class="result-card">
+                <div class="password-display-container">
+                    <input type="text" id="password-output" readonly placeholder="Your password will appear here">
+                    <button id="copy-btn" title="Copy to Clipboard">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 4V16C8 17.1046 8.89543 18 10 18H18C19.1046 18 20 17.1046 20 16V7.24264C20 6.71221 19.7893 6.20357 19.4142 5.82843L16.1716 2.58579C15.7964 2.21071 15.2878 2 14.7574 2H10C8.89543 2 8 2.89543 8 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V8C4 6.89543 4.89543 6 6 6H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="strength-meter-container">
+                    <div class="strength-label">Strength: <span id="strength-text">N/A</span></div>
+                    <div class="strength-bar-bg">
+                        <div id="strength-bar" class="strength-bar-fill"></div>
+                    </div>
+                </div>
+
+                <div id="qrcode-container" class="qrcode-box">
+                    <!-- QR Code will be injected here -->
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>History</h2>
+                    <div class="export-actions">
+                        <button id="export-csv" class="sm-btn">CSV</button>
+                        <button id="export-txt" class="sm-btn">TXT</button>
+                        <button id="clear-history" class="sm-btn danger">Clear</button>
+                    </div>
+                </div>
+                <ul id="history-list" class="history-list">
+                    <!-- History items will go here -->
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/lib/qrcode.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
