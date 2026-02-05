@@ -89,6 +89,38 @@ body {
         height: auto;
         box-shadow: none;
     }
+    .left-panel {
+        flex: none; /* Reset flex basis/grow/shrink */
+        width: 100%;
+        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .right-panel {
+        flex: none; /* Reset flex */
+        width: 100%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+    .mode-selector {
+        flex-direction: column;
+    }
+    .password-display-container {
+        flex-wrap: wrap;
+    }
+    #password-output {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    #copy-btn {
+        width: 100%;
+        padding: 10px;
+    }
 }
 
 /* Left Panel */
@@ -332,6 +364,7 @@ input:checked + .slider:before {
     background-color: #fcfcfc;
     color: #333;
     font-family: 'Courier New', monospace; /* Monospace for passwords */
+    min-width: 0; /* Prevent flex overflow */
 }
 
 #password-output:focus {
