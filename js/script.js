@@ -94,22 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
         exportCsvBtn.addEventListener('click', exportHistoryCSV);
         exportTxtBtn.addEventListener('click', exportHistoryTXT);
 
-        // Mode Toggling logic (Optional: disable specific checkboxes if Easy mode is on)
-        // For now, we handle it in generation logic.
+        // Mode toggling: disable numbers & symbols in Easy to say mode
         [modeAll, modeEasy].forEach(el => {
             el.addEventListener('change', () => {
-                // Could visually disable options here
                 const isEasy = modeEasy.checked;
                 includeNumbers.disabled = isEasy;
                 includeSymbols.disabled = isEasy;
                 if (isEasy) {
-                    includeNumbers.parentElement.style.opacity = '0.5';
-                    includeSymbols.parentElement.style.opacity = '0.5';
-                } else {
-                    includeNumbers.disabled = false;
-                    includeSymbols.disabled = false;
-                    includeNumbers.parentElement.style.opacity = '1';
-                    includeSymbols.parentElement.style.opacity = '1';
+                    includeNumbers.checked = false;
+                    includeSymbols.checked = false;
+                    generatePassword();
                 }
             });
         });
